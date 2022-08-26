@@ -14,13 +14,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Center as="main" py={10}>
-        <Stack spacing={10}>
+      <Box as="main" py={10} minH="100vh">
+        <Stack spacing={40} align="center">
           <ConnectButton />
-
           <Action />
         </Stack>
-      </Center>
+      </Box>
     </Box>
   )
 }
