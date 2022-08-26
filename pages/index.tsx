@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Box as="main" py={10} minH="100vh">
-        <Stack spacing={40} align="center">
+        <Stack spacing={32} align="center">
           <ConnectButton />
           <Action />
         </Stack>
