@@ -1,5 +1,5 @@
 import { usePrepareSendTransaction, useSendTransaction, useAccount } from 'wagmi'
-import { Input, Button, Stack, Text, Checkbox } from '@chakra-ui/react'
+import { Input, Button, Stack, Text, Checkbox, Textarea } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ethers } from 'ethers'
 
@@ -64,7 +64,7 @@ function Action() {
         <Text as="label" htmlFor="message">
           message
         </Text>
-        <Input placeholder="message" value={message} onChange={onMessageChange} />
+        <Textarea placeholder="message" value={message} onChange={onMessageChange} />
       </Stack>
 
       <Stack textAlign={'center'}>
