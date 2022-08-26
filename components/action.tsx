@@ -11,17 +11,16 @@ function stringToHex(text: string) {
 }
 
 function Action() {
-  const [to, setTo] = useState('')
+  const [receiver, setReceiver] = useState('')
   const [message, setMessage] = useState('')
-  const [sendToSelf, setSendToSelf] = useState(false)
   const [error, setError] = useState('')
 
   const { config } = usePrepareSendTransaction({
-    request: { to: to, data: stringToHex(message) },
+    request: { to: receiver, data: stringToHex(message) },
   })
   const { data, isLoading, isSuccess, sendTransaction } = useSendTransaction(config)
 
-  const onToChange = (event: any) => setTo(event.target.value)
+  const onReceiverChange = (event: any) => setReceiver(event.target.value)
   const onMessageChange = (event: any) => setMessage(event.target.value)
   const shootTx = () => sendTransaction?.()
 
@@ -41,9 +40,11 @@ function Action() {
 
   const onChangeSendToSelf = (event: any) => {
     const isChecked = event.target.checked
-    setSendToSelf(isChecked)
-    if (isChecked) {
-      setTo(address!)
+
+    if (isChecked && address) {
+      setReceiver(address)
+    } else {
+      setReceiver('')
     }
   }
 
@@ -53,8 +54,8 @@ function Action() {
         <Text as="label" htmlFor="to">
           whom to send transaction to?
         </Text>
-        <Input id="to" placeholder="to" value={to} onChange={onToChange} />
-        <Checkbox colorScheme="blue" isChecked={sendToSelf} onChange={onChangeSendToSelf} isDisabled={isDisconnected}>
+        <Input id="to" placeholder="to" value={receiver} onChange={onReceiverChange} />
+        <Checkbox colorScheme="blue" onChange={onChangeSendToSelf} isDisabled={isDisconnected}>
           send to self?
         </Checkbox>
       </Stack>
